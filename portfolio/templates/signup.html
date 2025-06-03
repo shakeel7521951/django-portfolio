@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div
+  class="container d-flex justify-content-center align-items-center min-vh-100 bg-black text-white mb-3"
+>
+  <div class="card p-4" style="width: 100%; max-width: 400px">
+    <h3 class="text-center mb-4 text-dark">Sign Up</h3>
+    <form>
+      <div class="mb-3">
+        <label for="inputName" class="form-label text-dark">Full Name</label>
+        <input
+          type="text"
+          class="form-control border-dark"
+          id="inputName"
+          placeholder="Enter your name"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputPhone" class="form-label text-dark"
+          >Phone Number</label
+        >
+        <input
+          type="tel"
+          class="form-control border-dark"
+          id="inputPhone"
+          placeholder="e.g. 03xx-xxxxxxx"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputEmail" class="form-label text-dark"
+          >Email address</label
+        >
+        <input
+          type="email"
+          class="form-control border-dark"
+          id="inputEmail"
+          placeholder="Enter your email"
+        />
+        <div class="form-text text-dark">
+          We'll never share your email with anyone else.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="inputPassword" class="form-label text-dark">Password</label>
+        <input
+          type="password"
+          class="form-control border-dark"
+          id="inputPassword"
+          placeholder="Create a password"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputConfirmPassword" class="form-label text-dark"
+          >Confirm Password</label
+        >
+        <input
+          type="password"
+          class="form-control border-dark"
+          id="inputConfirmPassword"
+          placeholder="Repeat your password"
+        />
+      </div>
+      <button type="submit" class="btn btn-warning w-100 text-black fw-bold">
+        Sign Up
+      </button>
+      <p class="text-dark mt-3">
+        Already have an account? <a href="{% url 'login' %}">login</a>
+      </p>
+    </form>
+    <a
+      href="{% url 'social:begin' 'google-oauth2' %}?next=/"
+      class="btn btn-warning w-100 text-black fw-bold"
+      >Signup with Google</a
+    >
+  </div>
+</div>
+{% endblock %}

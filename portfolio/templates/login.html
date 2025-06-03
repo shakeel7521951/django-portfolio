@@ -1,0 +1,78 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div
+  class="container d-flex justify-content-center align-items-center min-vh-100 bg-black text-white"
+>
+  <div class="card p-4" style="width: 100%; max-width: 400px">
+    <h3 class="text-center mb-4 text-dark">Login</h3>
+
+    <!-- Messages block -->
+    {% if messages %}
+    <div class="mb-3">
+      {% for message in messages %}
+      <div
+        class="alert alert-{{ message.tags }} alert-dismissible fade show text-dark"
+        role="alert"
+      >
+        {{ message }}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="POST" action="{% url 'login' %}">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label text-dark"
+          >Username</label
+        >
+        <input
+          type="text"
+          class="form-control border-dark"
+          name="username"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+        />
+        <div id="emailHelp" class="form-text text-dark">
+          We'll never share your email with anyone else.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label text-dark"
+          >Password</label
+        >
+        <input
+          type="password"
+          name="password"
+          class="form-control border-dark"
+          id="exampleInputPassword1"
+        />
+      </div>
+      <div class="mb-3 form-check">
+        <input
+          type="checkbox"
+          class="form-check-input border-dark"
+          id="exampleCheck1"
+        />
+        <label class="form-check-label text-dark" for="exampleCheck1"
+          >Check me out</label
+        >
+      </div>
+      <button type="submit" class="btn btn-warning w-100 text-black fw-bold">
+        Submit
+      </button>
+      <p class="text-dark mt-3">
+        Don't have an account? <a href="{% url 'signup' %}">Signup here</a>
+      </p>
+    </form>
+    <a href="{% url 'social:begin' 'google-oauth2' %}?next=/" class="btn btn-warning w-100 text-black fw-bold"
+      >Login with Google</a
+    >
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Mobile Metas -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Diffuso</title>
+
+    <!-- Bootstrap CSS from CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,700|Raleway:400,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Local Bootstrap CSS (Optional if you're using CDN only) -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/bootstrap.css' %}"
+    />
+
+    <!-- Custom Styles -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+
+    <!-- Responsive Style -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="hero_area">
+      <!-- header section starts -->
+      <header class="header_section">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
+            <a class="navbar-brand" href="{% url 'home'%}">
+              <img src="images/logo.png" alt="" />
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'home' %}"
+                    >Home <span class="sr-only">(current)</span></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'about' %}">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'service' %}">Services</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'portfolio' %}">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                </li>
+              </ul>
+
+              <!-- Login button aligned to the right -->
+              <div class="d-flex align-items-center ml-auto">
+                <form class="form-inline my-2 my-lg-0 mr-3">
+                  <button
+                    class="btn my-2 my-sm-0 nav_search-btn"
+                    type="submit"
+                  ></button>
+                </form>
+
+                {% if user.is_authenticated %}
+                <a
+                  href="{% url 'logout' %}"
+                  class="btn btn-danger text-white font-weight-bold"
+                >
+                  Logout
+                </a>
+                {% else %}
+                <a
+                  href="{% url 'login' %}"
+                  class="btn btn-warning text-black font-weight-bold"
+                >
+                  Login
+                </a>
+                {% endif %}
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <!-- header section ends -->
+
+      <!-- end header section -->
+      <!-- slider section -->
+      {%block slider%} {%endblock%} {%block content%} {%endblock%}
+
+      <!-- end slider section -->
+    </div>
+    <section class="info_section layout_padding2-top">
+      <div class="social_container">
+        <div class="social_box">
+          {% for social in social_links %}
+          <a href="{{ social.url }}">
+            <img src="{% static social.icon %}" alt="{{ social.name }}" />
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="info_container">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-lg-3">
+              <h6>{{ about_heading|default:"ABOUT US" }}</h6>
+              <p>
+                {{ about_text|default:"Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit..." }}
+              </p>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+              <h6>{{ instagram_heading|default:"Instagram" }}</h6>
+              <p>
+                {{ instagram_text|default:"Lorem ipsum dolor sit amet,
+                consectetur adipiscing elit..." }}
+              </p>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+              <h6>{{ help_heading|default:"NEED HELP" }}</h6>
+              <p>
+                {{ help_text|default:"Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit..." }}
+              </p>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+              <h6>{{ contact_heading|default:"CONTACT US" }}</h6>
+              <div class="info_link-box">
+                <p>amna@gmil.com</p>
+                <p>08988098789</p>
+                <p>Bahawalpur</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- footer section -->
+      <section class="footer_section">
+        <div class="container">
+          <p>
+            &copy; <span id="displayYear"></span> All Rights Reserved By
+            <a href="{{ footer_link_url|default:'https://html.design/' }}"
+              >{{ footer_link_text|default:'Free Html Templates' }}</a
+            >
+          </p>
+        </div>
+      </section>
+      <!-- footer section -->
+    </section>
+
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="service_section py-5">
+  <div class="container">
+    <div class="heading_container text-center mb-5">
+      <h2 class="display-4 fw-bold">
+        Ser<span class="text-primary">vi</span>ces
+      </h2>
+      <p class="text-muted fst-italic">
+        adipiscingelit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+      </p>
+    </div>
+
+    <div class="row g-4">
+      {% for service in services %}
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow border-0 rounded-4 overflow-hidden service-card">
+          {% if service.image %}
+          <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}" style="object-fit: cover; height: 220px;">
+          {% else %}
+          <img src="{% static 'images/default-service.jpg' %}" class="card-img-top" alt="Default service" style="object-fit: cover; height: 220px;">
+          {% endif %}
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-bold">{{ service.title }}</h5>
+            {% if service.subtitle %}
+            <h6 class="card-subtitle mb-3 text-secondary">{{ service.subtitle }}</h6>
+            {% endif %}
+            <p class="card-text text-secondary flex-grow-1">{{ service.description|truncatewords:25 }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hover effect on cards */
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgb(0 123 255 / 0.25);
+    transition: all 0.3s ease;
+  }
+  .service-card {
+    transition: all 0.3s ease;
+  }
+</style>
+{% endblock %}
