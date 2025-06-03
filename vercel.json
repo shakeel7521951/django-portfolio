@@ -1,12 +1,11 @@
 {
-  "builds": [
-    {
-      "src": "Portfolio_Website/wsgi.py",
-      "use": "@vercel/python",
-      "config": { "maxLambdaSize": "50mb" }
+  "functions": {
+    "api/index.py": {
+      "runtime": "python3.9",
+      "handler": "app"
     }
-  ],
+  },
   "routes": [
-    { "src": "/(.*)", "dest": "Portfolio_Website/wsgi.py" }
+    { "src": "/(.*)", "dest": "api/index.py" }
   ]
 }
